@@ -37,12 +37,7 @@ out = random( [2,1,2] );
 The function accepts the following `options`:
 
 *	__lambda__: rate parameter. Default: `1`.
-*	__dtype__: output data type. The following `dtypes` are accepted:
-
-	-	`float32`
-	-	`float64`
-	-	`generic` (default)
-
+*	__dtype__: output data type (see [`matrix`](https://github.com/dstructs/matrix) for a list of acceptable data types).
 
 A [Exponential](https://en.wikipedia.org/wiki/Exponential_distribution) distribution is a function of one parameter: `lambda`(rate parameter). By default, `lambda` is equal to `1`. To generate draws from a distribution with a specific `lambda`, set the corresponding option:
 
