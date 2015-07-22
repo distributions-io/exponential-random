@@ -82,7 +82,6 @@ __Notes__:
 	});
 	// example output:  [ [ [~0.536,~0.402,~1.032] ], [ [~1.157,~1.712,~1.974] ] ]
 	```
-*	Integer [`arrays`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays) are __not__ supported. In JavaScript, [`NaN`](https://en.wikipedia.org/wiki/NaN) values are only represented in floating-point storage formats ([IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point)).
 
 ## Examples
 
