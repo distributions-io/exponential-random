@@ -1,6 +1,7 @@
 'use strict';
 
-var random = require( './../lib' ),
+var generator = require( '../lib' ),
+	random = generator( 1 ),
 	out;
 
 // ---

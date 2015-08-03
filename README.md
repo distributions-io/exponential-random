@@ -1,6 +1,6 @@
 Exponential Random Variables
 ===
-[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Dependencies][dependencies-image]][dependencies-url]
+[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][codecov-image]][codecov-url] [![Dependencies][dependencies-image]][dependencies-url]
 
 > Creates a [matrix](https://github.com/dstructs/matrix) or array filled with draws from an [Exponential distribution](https://en.wikipedia.org/wiki/Exponential_distribution).
 
@@ -17,36 +17,42 @@ For use in the browser, use [browserify](https://github.com/substack/node-browse
 ## Usage
 
 ``` javascript
-var random = require( 'distributions-exponential-random' );
+var generator = require( 'distributions-exponential-random' );
 ```
+
+#### generator( lambda[, opts ] )
+
+Initializes a random number generator for drawing random variates from an exponential distribution with rate parameter `lambda` (where `lambda > 0`).
+
+```javascript
+var random = generator( 1, {
+	'seed': 22
+});
+```
+
+The function accepts the following `option`:
+
+*	__seed__: positive integer used as a seed to initialize the generator. If not supplied, uniformly distributed random numbers are generated via `Math.random`.
+
+The generator returns a function `random` with the following API:
 
 #### random( dims[, opts] )
 
-Creates a [`matrix`](https://github.com/dstructs/matrix) or [`array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) filled with draws from an [Exponential distribution](https://en.wikipedia.org/wiki/Exponential_distribution) with rate parameter `lambda`. The `dims` argument may either be a positive `integer` specifying a `length` or an `array` of positive `integers` specifying dimensions.
+Creates a [`matrix`](https://github.com/dstructs/matrix) or [`array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) filled with draws from the specified [exponential distribution](https://en.wikipedia.org/wiki/Exponential_distribution). The `dims` argument may either be a positive `integer` specifying a `length` or an `array` of positive `integers` specifying dimensions.
 
 ``` javascript
 var out;
 
 out = random( 5 );
-// example output: [ ~0.298, ~0.992, ~0.411, ~0.128, ~0.256 ];
+// returns [ ~0.278, ~1.631, ~0.228, ~0.134, ~0.019 ];
 
 out = random( [2,1,2] );
-// example output: [ [ [~0.303,~0.42] ], [ [~1.118,~0.591] ] ]
+// returns [ [ [~4.3,~3.858] ], [ [~0.043,~0.349] ] ]
 ```
 
-The function accepts the following `options`:
+The function accepts the following `option`:
 
-*	__lambda__: rate parameter. Default: `1`.
-*	__dtype__: output data type (see [`matrix`](https://github.com/dstructs/matrix) for a list of acceptable data types).
-
-A [Exponential](https://en.wikipedia.org/wiki/Exponential_distribution) distribution is a function of one parameter: `lambda`(rate parameter). By default, `lambda` is equal to `1`. To generate draws from a distribution with a specific `lambda`, set the corresponding option:
-
-``` javascript
-var out = random( 5, {
-	'lambda': 0.1,
-});
-// example output: [ ~18.556, ~0.117, ~4.316, ~10.219, ~8.239 ]
-```
+*	__dtype__: output data type (see [`matrix`](https://github.com/dstructs/matrix) for a list of acceptable data types). Default: `generic`.
 
 By default, the output data structure is a generic [`array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array). To output a [`typed array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays) or [`matrix`](https://github.com/dstructs/matrix), set the `dtype` option.
 
@@ -56,15 +62,15 @@ var out;
 out = random( 5, {
 	'dtype': 'float32'
 });
-// example output: Float32Array( [~0.298,~0.992,~0.411,~0.128,~0.256] );
+// returns Float32Array( [~0.129,~1.08,~0.31,~0.0004,~0.466] );
 
 out = random( [3,2], {
 	'dtype': 'float64'
 });
 /*
-	[ ~0.883 ~0.171
-	  ~1.011 ~3.555
-	  ~0.551 ~0.875 ]
+	[ ~0.131 ~0.269
+	  ~0.3   ~2.03
+	  ~0.561 ~0.244 ]
 */
 ```
 
@@ -81,7 +87,8 @@ __Notes__:
 ## Examples
 
 ``` javascript
-var random = require( 'distributions-exponential-random' ),
+var generator = require( 'distributions-exponential-random' ),
+	random = generator( 1 ),
 	out;
 
 // Plain arrays...
@@ -166,8 +173,8 @@ Copyright &copy; 2015. The [Compute.io](https://github.com/compute-io) Authors.
 [travis-image]: http://img.shields.io/travis/distributions-io/exponential-random/master.svg
 [travis-url]: https://travis-ci.org/distributions-io/exponential-random
 
-[coveralls-image]: https://img.shields.io/coveralls/distributions-io/exponential-random/master.svg
-[coveralls-url]: https://coveralls.io/r/distributions-io/exponential-random?branch=master
+[codecov-image]: https://img.shields.io/codecov/c/githubdistributions-io/exponential-random/master.svg
+[codecov-url]: https://codecov.io/github/distributions-io/exponential-random?branch=master
 
 [dependencies-image]: http://img.shields.io/david/distributions-io/exponential-random.svg
 [dependencies-url]: https://david-dm.org/distributions-io/exponential-random
