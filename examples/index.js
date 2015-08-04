@@ -13,14 +13,6 @@ console.log( '1x10:' );
 console.log( out );
 console.log( '\n' );
 
-// Custom rate parameter:
-out = random( 10, {
-	'lambda': 0.1
-});
-console.log( 'Lambda: 0.1, 1x10:' );
-console.log( out );
-console.log( '\n' );
-
 // 2x1x3:
 out = random( [2,1,3] );
 console.log( '2x1x3:' );

@@ -96,11 +96,6 @@ var generator = require( 'distributions-exponential-random' ),
 // 1x10:
 out = random( 10 );
 
-// Custom rate parameter:
-out = random( 10, {
-	'lambda': 0.1
-})
-
 // 2x1x3:
 out = random( [2,1,3] );
 
