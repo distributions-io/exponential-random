@@ -8,7 +8,7 @@ Exponential Random Variables
 ## Installation
 
 ``` bash
-$ npm install distributions-exponential-random
+$ npm install rand-exponential
 ```
 
 For use in the browser, use [browserify](https://github.com/substack/node-browserify).
@@ -17,7 +17,7 @@ For use in the browser, use [browserify](https://github.com/substack/node-browse
 ## Usage
 
 ``` javascript
-var generator = require( 'distributions-exponential-random' );
+var generator = require( 'rand-exponential' );
 ```
 
 #### generator( lambda[, opts ] )
@@ -87,7 +87,7 @@ __Notes__:
 ## Examples
 
 ``` javascript
-var generator = require( 'distributions-exponential-random' ),
+var generator = require( 'rand-exponential' ),
 	random = generator( 1 ),
 	out;
 
@@ -162,20 +162,20 @@ $ make view-cov
 Copyright &copy; 2015. The [Compute.io](https://github.com/compute-io) Authors.
 
 
-[npm-image]: http://img.shields.io/npm/v/distributions-exponential-random.svg
-[npm-url]: https://npmjs.org/package/distributions-exponential-random
+[npm-image]: http://img.shields.io/npm/v/rand-exponential.svg
+[npm-url]: https://npmjs.org/package/rand-exponential
 
-[travis-image]: http://img.shields.io/travis/distributions-io/exponential-random/master.svg
-[travis-url]: https://travis-ci.org/distributions-io/exponential-random
+[travis-image]: http://img.shields.io/travis/rand-io/exponential/master.svg
+[travis-url]: https://travis-ci.org/rand-io/exponential
 
-[codecov-image]: https://img.shields.io/codecov/c/githubdistributions-io/exponential-random/master.svg
-[codecov-url]: https://codecov.io/github/distributions-io/exponential-random?branch=master
+[codecov-image]: https://img.shields.io/codecov/c/githubrand-io/exponential/master.svg
+[codecov-url]: https://codecov.io/github/rand-io/exponential?branch=master
 
-[dependencies-image]: http://img.shields.io/david/distributions-io/exponential-random.svg
-[dependencies-url]: https://david-dm.org/distributions-io/exponential-random
+[dependencies-image]: http://img.shields.io/david/rand-io/exponential.svg
+[dependencies-url]: https://david-dm.org/rand-io/exponential
 
-[dev-dependencies-image]: http://img.shields.io/david/dev/distributions-io/exponential-random.svg
-[dev-dependencies-url]: https://david-dm.org/dev/distributions-io/exponential-random
+[dev-dependencies-image]: http://img.shields.io/david/dev/rand-io/exponential.svg
+[dev-dependencies-url]: https://david-dm.org/dev/rand-io/exponential
 
-[github-issues-image]: http://img.shields.io/github/issues/distributions-io/exponential-random.svg
-[github-issues-url]: https://github.com/distributions-io/exponential-random/issues
+[github-issues-image]: http://img.shields.io/github/issues/rand-io/exponential.svg
+[github-issues-url]: https://github.com/rand-io/exponential/issues

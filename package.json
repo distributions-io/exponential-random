@@ -1,5 +1,5 @@
 {
-  "name": "distributions-exponential-random",
+  "name": "rand-exponential",
   "version": "0.0.0",
   "description": "Generates exponentially distributed random variates.",
   "author": {
@@ -20,7 +20,7 @@
   "main": "./lib",
   "repository": {
     "type": "git",
-    "url": "git://github.com/distributions-io/exponential-random.git"
+    "url": "git://github.com/rand-io/exponential.git"
   },
   "keywords": [
     "distributions.io",
@@ -39,10 +39,12 @@
     "multidimensional",
     "random variables",
     "random numbers",
-    "random variates"
+    "random variates",
+    "life times",
+    "memory-less"
   ],
   "bugs": {
-    "url": "https://github.com/distributions-io/exponential-random/issues"
+    "url": "https://github.com/rand-io/exponential/issues"
   },
   "dependencies": {
     "compute-array-constructors": "^1.0.0",
