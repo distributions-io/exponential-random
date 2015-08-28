@@ -8,7 +8,7 @@ Exponential Random Variables
 ## Installation
 
 ``` bash
-$ npm install rand-exponential
+$ npm install distributions-exponential-random
 ```
 
 For use in the browser, use [browserify](https://github.com/substack/node-browserify).
@@ -17,42 +17,76 @@ For use in the browser, use [browserify](https://github.com/substack/node-browse
 ## Usage
 
 ``` javascript
-var generator = require( 'rand-exponential' );
+var random = require( 'distributions-exponential-random' );
 ```
 
-#### generator( lambda[, opts ] )
+#### random( [dims][, opts] )
 
-Initializes a random number generator for drawing random variates from an exponential distribution with rate parameter `lambda` (where `lambda > 0`).
-
-```javascript
-var random = generator( 1, {
-	'seed': 22
-});
-```
-
-The function accepts the following `option`:
-
-*	__seed__: positive integer used as a seed to initialize the generator. If not supplied, uniformly distributed random numbers are generated via `Math.random`.
-
-The generator returns a function `random` with the following API:
-
-#### random( dims[, opts] )
-
-Creates a [`matrix`](https://github.com/dstructs/matrix) or [`array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) filled with draws from the specified [exponential distribution](https://en.wikipedia.org/wiki/Exponential_distribution). The `dims` argument may either be a positive `integer` specifying a `length` or an `array` of positive `integers` specifying dimensions.
+Creates a [`matrix`](https://github.com/dstructs/matrix) or [`array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) filled with draws from an [Exponential distribution](https://en.wikipedia.org/wiki/Exponential_distribution). The `dims` argument may either be a positive `integer` specifying a `length` or an `array` of positive `integers` specifying dimensions. If no `dims` argument is supplied,the function returns a single random draw from an [Exponential distribution](https://en.wikipedia.org/wiki/Exponential_distribution).
 
 ``` javascript
 var out;
 
+// Set seed
+random.seed = 2;
+
 out = random( 5 );
-// returns [ ~0.278, ~1.631, ~0.228, ~0.134, ~0.019 ];
+// returns [ ~0.278, ~0.324, ~2.248, ~0.403, ~0.143 ]
 
 out = random( [2,1,2] );
-// returns [ [ [~4.3,~3.858] ], [ [~0.043,~0.349] ] ]
+// returns [ [ [~0.564,~0.864] ], [ [~0.131,~0.495] ] ]
+
 ```
 
-The function accepts the following `option`:
+The function accepts the following `options`:
 
+*	__lambda__: rate parameter. Default: `1`.
+*	__seed__: positive integer used as a seed to initialize the generator. If not supplied, uniformly distributed random numbers are generated via an underlying generator seedable by setting the `seed` property of the exported function.
 *	__dtype__: output data type (see [`matrix`](https://github.com/dstructs/matrix) for a list of acceptable data types). Default: `generic`.
+
+An [Exponential](https://en.wikipedia.org/wiki/Exponential_distribution) distribution is a function of one parameter: `lambda`(rate parameter). By default, `lambda` is equal to `1`. To adjust it, set the corresponding option.
+
+``` javascript
+var out = random( 5, {
+	'lambda': 0.2
+});
+// returns [ 14.09, 1.41, ~0.406, ~0.699, ~3.132 ]
+
+```
+
+To be able to reproduce the generated random variates, set the `seed` option to a positive integer.
+
+``` javascript
+var out = random( 3, {
+	'seed': 22
+});
+// returns [ ~0.278, ~1.931, 3.26 ]
+
+var out = random( 3, {
+    'seed': 22
+});
+// returns [ ~0.278, ~1.931, 3.26 ]
+
+```
+
+If no `seed` option is supplied, each function call uses a common underlying uniform number generator. A positive-integer seed for this underlying generator can be supplied by setting the seed property of the exported function.
+
+```javascript
+random.seed = 11;
+var out = random();
+// returns ~0.278
+
+var out = random();
+// returns ~0.617
+
+random.seed = 11;
+var out = random();
+// returns ~0.278
+
+var out = random();
+// returns ~0.617
+
+```
 
 By default, the output data structure is a generic [`array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array). To output a [`typed array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays) or [`matrix`](https://github.com/dstructs/matrix), set the `dtype` option.
 
@@ -62,16 +96,17 @@ var out;
 out = random( 5, {
 	'dtype': 'float32'
 });
-// returns Float32Array( [~0.129,~1.08,~0.31,~0.0004,~0.466] );
+// returns Float32Array( [1.96,~0.547,~0.013,~0.126,~0.223] )
 
 out = random( [3,2], {
 	'dtype': 'float64'
 });
 /*
-	[ ~0.131 ~0.269
-	  ~0.3   ~2.03
-	  ~0.561 ~0.244 ]
+	[ 2.48 ~0.095
+	  ~0.262 ~0.621
+	  ~1.482 ~0.693 ]
 */
+
 ```
 
 __Notes__:
@@ -81,15 +116,18 @@ __Notes__:
 	var out = random( [2,1,3], {
 		'dtype': 'float32'
 	});
-	// example output:  [ [ [~0.536,~0.402,~1.032] ], [ [~1.157,~1.712,~1.974] ] ]
+	// returns [ [ [~2.010,~1.905,~2.823] ], [ [~0.691,~0.348,~0.630] ] ]
+
 	```
 
 ## Examples
 
 ``` javascript
-var generator = require( 'rand-exponential' ),
-	random = generator( 1 ),
+var random = require( 'distributions-exponential-random' ),
 	out;
+
+// Set seed
+random.seed = 23;
 
 // Plain arrays...
 
@@ -162,20 +200,20 @@ $ make view-cov
 Copyright &copy; 2015. The [Compute.io](https://github.com/compute-io) Authors.
 
 
-[npm-image]: http://img.shields.io/npm/v/rand-exponential.svg
-[npm-url]: https://npmjs.org/package/rand-exponential
+[npm-image]: http://img.shields.io/npm/v/distributions-exponential-random.svg
+[npm-url]: https://npmjs.org/package/distributions-exponential-random
 
-[travis-image]: http://img.shields.io/travis/rand-io/exponential/master.svg
-[travis-url]: https://travis-ci.org/rand-io/exponential
+[travis-image]: http://img.shields.io/travis/distributions-io/exponential-random/master.svg
+[travis-url]: https://travis-ci.org/distributions-io/exponential-random
 
-[codecov-image]: https://img.shields.io/codecov/c/githubrand-io/exponential/master.svg
-[codecov-url]: https://codecov.io/github/rand-io/exponential?branch=master
+[codecov-image]: https://img.shields.io/codecov/c/github/distributions-io/exponential-random/master.svg
+[codecov-url]: https://codecov.io/github/distributions-io/exponential-random?branch=master
 
-[dependencies-image]: http://img.shields.io/david/rand-io/exponential.svg
-[dependencies-url]: https://david-dm.org/rand-io/exponential
+[dependencies-image]: http://img.shields.io/david/distributions-io/exponential-random.svg
+[dependencies-url]: https://david-dm.org/distributions-io/exponential-random
 
-[dev-dependencies-image]: http://img.shields.io/david/dev/rand-io/exponential.svg
-[dev-dependencies-url]: https://david-dm.org/dev/rand-io/exponential
+[dev-dependencies-image]: http://img.shields.io/david/dev/distributions-io/exponential-random.svg
+[dev-dependencies-url]: https://david-dm.org/dev/distributions-io/exponential-random
 
-[github-issues-image]: http://img.shields.io/github/issues/rand-io/exponential.svg
-[github-issues-url]: https://github.com/rand-io/exponential/issues
+[github-issues-image]: http://img.shields.io/github/issues/distributions-io/exponential-random.svg
+[github-issues-url]: https://github.com/distributions-io/exponential-random/issues

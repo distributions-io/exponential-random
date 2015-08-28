@@ -1,8 +1,10 @@
 'use strict';
 
-var generator = require( '../lib' ),
-	random = generator( 1 ),
+var random = require( '../lib' ),
 	out;
+
+// Set seed
+random.seed = 23;
 
 // ---
 // Plain arrays...
@@ -24,14 +26,6 @@ out = random( [5,5,5] );
 console.log( '5x5x5:' );
 console.log( out );
 console.log( '\n' );
-
-// 10x5x10x20:
-out = random( [10,5,10,20] );
-console.log( '10x5x10x20:' );
-console.log( JSON.stringify( out ) );
-console.log( '\n' );
-// Note that `NaN` values are stringified as `null`.
-
 
 // ---
 // Typed arrays...
