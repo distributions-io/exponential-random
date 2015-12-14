@@ -2,7 +2,7 @@ Exponential Random Variables
 ===
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][codecov-image]][codecov-url] [![Dependencies][dependencies-image]][dependencies-url]
 
-> Creates a [matrix](https://github.com/dstructs/matrix) or array filled with draws from an [Exponential distribution](https://en.wikipedia.org/wiki/Exponential_distribution).
+> Creates a [matrix](https://github.com/dstructs/matrix) or array filled with draws from an [exponential distribution](https://en.wikipedia.org/wiki/Exponential_distribution).
 
 
 ## Installation
@@ -22,7 +22,7 @@ var random = require( 'distributions-exponential-random' );
 
 #### random( [dims][, opts] )
 
-Creates a [`matrix`](https://github.com/dstructs/matrix) or [`array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) filled with draws from an [Exponential distribution](https://en.wikipedia.org/wiki/Exponential_distribution). The `dims` argument may either be a positive `integer` specifying a `length` or an `array` of positive `integers` specifying dimensions. If no `dims` argument is supplied,the function returns a single random draw from an [Exponential distribution](https://en.wikipedia.org/wiki/Exponential_distribution).
+Creates a [`matrix`](https://github.com/dstructs/matrix) or [`array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) filled with draws from an [exponential distribution](https://en.wikipedia.org/wiki/Exponential_distribution). The `dims` argument may either be a positive `integer` specifying a `length` or an `array` of positive `integers` specifying dimensions. If no `dims` argument is supplied,the function returns a single random draw from an [exponential distribution](https://en.wikipedia.org/wiki/Exponential_distribution).
 
 ``` javascript
 var out;
@@ -44,7 +44,7 @@ The function accepts the following `options`:
 *	__seed__: positive integer used as a seed to initialize the generator. If not supplied, uniformly distributed random numbers are generated via an underlying generator seedable by setting the `seed` property of the exported function.
 *	__dtype__: output data type (see [`matrix`](https://github.com/dstructs/matrix) for a list of acceptable data types). Default: `generic`.
 
-An [Exponential](https://en.wikipedia.org/wiki/Exponential_distribution) distribution is a function of one parameter: `lambda`(rate parameter). By default, `lambda` is equal to `1`. To adjust it, set the corresponding option.
+An [exponential](https://en.wikipedia.org/wiki/Exponential_distribution) distribution is a function of one parameter: `lambda > 0`(rate parameter). By default, `lambda` is equal to `1`. To adjust it, set the corresponding option.
 
 ``` javascript
 var out = random( 5, {
