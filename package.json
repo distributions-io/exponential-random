@@ -25,6 +25,7 @@
   "keywords": [
     "distributions.io",
     "distributions",
+    "distribution",
     "probability",
     "statistics",
     "stats",
@@ -41,7 +42,8 @@
     "random numbers",
     "random variates",
     "life times",
-    "memory-less"
+    "memory-less",
+    "continuous"
   ],
   "bugs": {
     "url": "https://github.com/distributions-io/exponential-random/issues"
@@ -59,7 +61,10 @@
   "devDependencies": {
     "chai": "3.x.x",
     "codecov.io": "^0.1.5",
+    "compute-kstest": "git+https://github.com/compute-io/kstest.git",
     "compute-mean": "^3.0.0",
+    "distributions-exponential-mean": "0.0.0",
+    "distributions-exponential-variance": "0.0.0",
     "istanbul": "^0.3.0",
     "jshint": "2.x.x",
     "jshint-stylish": "2.x.x",
