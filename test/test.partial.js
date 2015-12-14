@@ -22,6 +22,15 @@ describe( 'random partial', function tests() {
 		expect( partial ).to.be.a( 'function' );
 	});
 
+	it( 'should generate an exponential random number generator', function test() {
+		var lambda = 2,
+			random = partial( lambda ),
+			out;
+
+		out = random();
+		assert.isNumber( out );
+	});
+
 	it( 'should generate an exponential random number generator for a custom uniform generator', function test() {
 		var generator = lcg(),
 			lambda = 2,
