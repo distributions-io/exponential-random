@@ -3,22 +3,11 @@
 
 // MODULES //
 
-var // Expectation library:
-	chai = require( 'chai' ),
-
-	// Module to be tested:
+var chai = require( 'chai' ),
 	random = require( './../lib/array.js' ),
-
-	// Theoretical mean of exponential distribution
 	expMean = require( 'distributions-exponential-mean' ),
-
-	// Theoretical variance of exponential distribution
 	expVar = require( 'distributions-exponential-variance' ),
-
-	// Module to calculate the mean
 	mean = require( 'compute-mean' ),
-
-	// Kolmogorov-Smirnov test
 	kstest = require( 'compute-kstest' );
 
 
@@ -38,11 +27,16 @@ describe( 'random array', function tests() {
 		expect( random ).to.be.a( 'function' );
 	});
 
+	it( 'should grow array for more than 64,000 elements', function test() {
+		var out = random( 64001 );
+		assert.strictEqual( out.length, 64001 );
+	});
+
 	it( 'should generate samples which pass mean test when λ = 1', function test() {
 		var out,
 			lambda = 1,
 			sampleMean,
-			n = 50000,
+			n = 10000,
 			iTotal = 400,
 			s, m,
 			ci,
@@ -86,7 +80,7 @@ describe( 'random array', function tests() {
 		var out,
 			lambda = 4,
 			sampleMean,
-			n = 50000,
+			n = 10000,
 			iTotal = 400,
 			s, m,
 			ci,

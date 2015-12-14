@@ -3,22 +3,12 @@
 
 // MODULES //
 
-var // Expectation library:
-	chai = require( 'chai' ),
-
-	// Module to be tested:
+var chai = require( 'chai' ),
 	random = require( './../lib/number.js' ),
-
-	// Theoretical mean of exponential distribution
 	expMean = require( 'distributions-exponential-mean' ),
-
-	// Theoretical variance of exponential distribution
 	expVar = require( 'distributions-exponential-variance' ),
-
-	// Module to calculate the mean
 	mean = require( 'compute-mean' ),
-
-	// Kolmogorov-Smirnov test
+	lcg = require( 'compute-lcg' ),
 	kstest = require( 'compute-kstest' );
 
 
@@ -38,11 +28,20 @@ describe( 'random number', function tests() {
 		expect( random ).to.be.a( 'function' );
 	});
 
+	it( 'should generate a random number for a custom generator', function test() {
+		var generator = lcg(),
+			lambda = 2,
+			out;
+
+		out = random( lambda, generator );
+		assert.isNumber( out );
+	});
+
 	it( 'should generate samples which pass mean test when λ = 1', function test() {
 		var out,
 			lambda = 1,
 			sampleMean,
-			n = 50000,
+			n = 10000,
 			iTotal = 400,
 			s, m,
 			ci,
@@ -92,7 +91,7 @@ describe( 'random number', function tests() {
 		var out,
 			lambda = 0.5,
 			sampleMean,
-			n = 50000,
+			n = 10000,
 			iTotal = 400,
 			s, m,
 			ci,

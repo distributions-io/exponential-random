@@ -3,22 +3,11 @@
 
 // MODULES //
 
-var // Expectation library:
-	chai = require( 'chai' ),
-
-	// Module to be tested:
+var chai = require( 'chai' ),
 	random = require( './../lib/matrix.js' ),
-
-	// Theoretical mean of exponential distribution
 	expMean = require( 'distributions-exponential-mean' ),
-
-	// Theoretical variance of exponential distribution
 	expVar = require( 'distributions-exponential-variance' ),
-
-	// Module to calculate the mean
 	mean = require( 'compute-mean' ),
-
-	// Kolmogorov-Smirnov test
 	kstest = require( 'compute-kstest' );
 
 
@@ -42,8 +31,8 @@ describe( 'random matrix', function tests() {
 		var out,
 			lambda = 1,
 			sampleMean,
-			M = 200,
-			N = 200,
+			M = 50,
+			N = 50,
 			iTotal = 400,
 			s, m,
 			ci,
@@ -91,8 +80,8 @@ describe( 'random matrix', function tests() {
 		var out,
 			lambda = 4,
 			sampleMean,
-			M = 200,
-			N = 200,
+			M = 50,
+			N = 50,
 			iTotal = 400,
 			s, m,
 			ci,

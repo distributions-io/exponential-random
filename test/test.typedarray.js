@@ -3,22 +3,11 @@
 
 // MODULES //
 
-var // Expectation library:
-	chai = require( 'chai' ),
-
-	// Module to be tested:
+var chai = require( 'chai' ),
 	random = require( './../lib/typedarray.js' ),
-
-	// Theoretical mean of exponential distribution
 	expMean = require( 'distributions-exponential-mean' ),
-
-	// Theoretical variance of exponential distribution
 	expVar = require( 'distributions-exponential-variance' ),
-
-	// Module to calculate the mean
 	mean = require( 'compute-mean' ),
-
-	// Kolmogorov-Smirnov test
 	kstest = require( 'compute-kstest' );
 
 
@@ -38,11 +27,30 @@ describe( 'random typed array', function tests() {
 		expect( random ).to.be.a( 'function' );
 	});
 
+	it( 'should throw an error if provided an unrecognized/unsupported data type option', function test() {
+		var values,
+			lambda = 2;
+
+		values = [
+			'beep',
+			'boop'
+		];
+
+		for ( var i = 0; i < values.length; i++ ) {
+			expect( badValue( values[i] ) ).to.throw( Error );
+		}
+		function badValue( value ) {
+			return function() {
+				random( 10, value, lambda );
+			};
+		}
+	});
+
 	it( 'should generate samples which pass mean test when λ = 1', function test() {
 		var out,
 			lambda = 1,
 			sampleMean,
-			n = 50000,
+			n = 10000,
 			iTotal = 400,
 			s, m,
 			ci,
@@ -87,7 +95,7 @@ describe( 'random typed array', function tests() {
 		var out,
 			lambda = 4,
 			sampleMean,
-			n = 50000,
+			n = 10000,
 			iTotal = 400,
 			s, m,
 			ci,
